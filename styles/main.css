@@ -1,0 +1,118 @@
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.nav-text {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 .4rem;
+    border: 2px solid #DA0267;
+
+    transition: color 300ms ease-in-out, border 300ms ease-in-out, background-color 300ms ease-in-out;
+
+    &:hover {
+        color: white;
+        border: 2px solid black;
+        background-color: black;
+    }
+}
+
+.nav-active {
+    color: white;
+    background-color: #DA0267;
+}
+
+.banner-max-height {
+    max-height: 40vh;
+}
+
+.banner-caption-text {
+    text-transform: uppercase;
+    color: white;
+    font-size: 24px;
+    font-weight: normal;
+
+    width: 250px;
+    margin: 0 auto;
+    padding: 2px 0px;
+    background-color: rgba(0, 0, 0, .7);
+}
+
+.banner-caption-top {
+    top: 35%
+}
+
+.banner-grayscale-image {
+    filter: grayscale(.6);
+}
+
+.container-categories {
+    width: 100%;
+}
+
+.text-category {
+    white-space: nowrap;
+}
+
+.card-width {
+    width: 18rem;
+}
+
+.size-icon {
+    font-size: 45px;
+}
+
+.cohort-text {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+@media (min-width: 576px) {
+    .container-categories {
+        width: 65%;
+    }
+    .search-container {
+        width: 30%;
+    }
+}
+
+
+.form {
+    margin: 0 auto;
+    padding: 2rem;
+    max-width: 576px;
+
+    label {
+        display: flex;
+        flex-direction: column;
+        font-size: 20px;
+        font-weight: 600;
+        row-gap: .5rem;
+    }
+
+    button {
+        margin-top: 1rem;
+        outline: none;
+        float: inline-end;
+    }
+}
+
+.container-detail {
+    margin: 0 12px;
+    background-color: #929191;
+    padding: 12px;
+
+    img {
+        width: 100%;
+    }
+}
