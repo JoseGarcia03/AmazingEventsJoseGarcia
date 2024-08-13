@@ -26,10 +26,10 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link nav-text text-uppercase" aria-current="page" href="../index.html">Home</a>
+                        <a class="nav-link nav-text text-uppercase" href="../index.html">Home</a>
                         <a class="nav-link nav-text text-uppercase" href="./upcomingEvents.html">Upcoming Events</a>
                         <a class="nav-link nav-text text-uppercase" href="./pastEvents.html">Past Events</a>
-                        <a class="nav-link nav-active nav-text text-uppercase" href="#">Contact</a>
+                        <a class="nav-link nav-text text-uppercase" href="./contact.html">Contact</a>
                         <a class="nav-link nav-text text-uppercase" href="./stats.html">Stats</a>
                     </div>
                 </div>
@@ -40,18 +40,19 @@
     <main>
         <section class="container-detail">
             <figure>
-                <img src="../assets/images/books.jpg" alt="Books">
+                <img id="image" src="../assets/images/books.jpg" alt="Books">
             </figure>
 
-            <div>
-                <h2>School Book Fair</h2>
-                <p>Bring your unused school book and bring the one you need.</p>
+            <div class="container-info">
+                <h2 id="title">School Book Fair</h2>
+                <p id="description">Bring your unused school book and bring the one you need.</p>
             </div>
         </section>
     </main>
 
     <!-- start-footer -->
-    <footer class="px-5 px-lg-5 d-flex align-items-center flex-column flex-sm-row justify-content-sm-between bg-dark mt-3">
+    <footer
+        class="px-5 px-lg-5 d-flex align-items-center flex-column flex-sm-row justify-content-sm-between bg-dark mt-3">
         <section class="d-flex gap-3">
             <a href="#">
                 <i class="bi bi-facebook size-icon"></i>
@@ -71,6 +72,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script src="../scripts/detail.js"></script>
 </body>
 
 </html>

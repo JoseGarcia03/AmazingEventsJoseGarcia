@@ -1,4 +1,4 @@
-const data = {
+const MockData = {
     currentDate: "2023-01-01",
     events: [
         {
@@ -199,136 +199,16 @@ const data = {
     ],
 };
 
-// Filtrar eventos futuros
-const upcomingEvents = data.events.filter(
-    (event) => new Date(event.date) > new Date(data.currentDate)
-);
-
-// Obtener categorías únicas de los eventos futuros
-const categories = [...new Set(upcomingEvents.map((event) => event.category))];
-const containerCategories = document.getElementById("container-categories");
-
-categories.forEach((categorie, idx) => {
-    containerCategories.innerHTML += `<div class="form-check text-category">
-      <input class="form-check-input" type="checkbox" value="${categorie}" id="${categorie}-${idx}">
-      <label class="form-check-label" for="${categorie}-${idx}">
-          ${categorie}
-      </label>
-  </div>`;
-});
-
-const form = document.getElementById("form");
-
-// Imprimir tarjetas
-const section = document.getElementById("section");
-
-const showEvents = (data) => {
-    section.innerHTML = "";
-    const fragment = new DocumentFragment();
-
-    if (data.events.length === 0) {
-        const noResultsMessage = document.createElement("p");
-        noResultsMessage.classList.add("text-center", "mt-4");
-        noResultsMessage.textContent =
-            "No se han encontrado eventos que coincidan con su búsqueda";
-        section.appendChild(noResultsMessage);
-        return;
-    }
-
-    data.events.forEach((event) => {
-        const article = document.createElement("article");
-        article.classList.add("card", "card-width");
-
-        const image = document.createElement("img");
-        image.classList.add("card-img-top");
-        image.style = "height: 200px;";
-        image.setAttribute("src", event.image);
-        image.setAttribute("alt", event.name);
-
-        const divBody = document.createElement("div");
-        divBody.classList.add(
-            "card-body",
-            "d-flex",
-            "flex-column",
-            "justify-content-between"
-        );
-
-        const h5 = document.createElement("h5");
-        h5.classList.add("card-title", "text-center");
-        h5.innerHTML = event.name;
-
-        const p = document.createElement("p");
-        p.classList.add("card-text", "text-center");
-        p.innerHTML = event.description;
-
-        const divDetail = document.createElement("div");
-        divDetail.classList.add(
-            "d-flex",
-            "justify-content-between",
-            "align-items-center"
-        );
-
-        const price = document.createElement("p");
-        price.classList.add("m-0");
-        price.innerHTML = `Price: ${event.price} $`;
-
-        const anchor = document.createElement("a");
-        anchor.classList.add("btn", "btn-primary");
-        anchor.setAttribute("href", `../pages/details.html?id=${event._id}`);
-        anchor.innerHTML = "Details";
-
-        divDetail.appendChild(price);
-        divDetail.appendChild(anchor);
-
-        divBody.appendChild(h5);
-        divBody.appendChild(p);
-        divBody.appendChild(divDetail);
-
-        article.appendChild(image);
-        article.appendChild(divBody);
-
-        fragment.appendChild(article);
-    });
-
-    section.appendChild(fragment);
-};
-
-const applyFilterSearch = (categories = [], textSearch = "") => {
-    let result = { events: [] };
-
-    if (categories.length > 0 || textSearch) {
-        result.events = upcomingEvents.filter(
-            (event) =>
-                (categories.length === 0 ||
-                    categories.includes(event.category)) &&
-                event.name.toLowerCase().includes(textSearch.toLowerCase())
-        );
-    } else {
-        result.events = upcomingEvents;
-    }
-    showEvents(result);
-};
-
 document.addEventListener("DOMContentLoaded", () => {
-    showEvents({ events: upcomingEvents });
+    const terms = window.location.search;
 
-    containerCategories.addEventListener("change", () => {
-        const categoriesChecked = Array.from(
-            document.querySelectorAll("input[type=checkbox]:checked")
-        ).map((input) => input.value);
+    const params = new URLSearchParams(terms);
 
-        const textSearch = document.getElementById("search").value;
-        applyFilterSearch(categoriesChecked, textSearch);
-    });
+    const id = params.get("id");
 
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const textSearch = document.getElementById("search").value;
+    const event = MockData.events.find((event) => event._id === id);
 
-        const categoriesChecked = Array.from(
-            document.querySelectorAll("input[type=checkbox]:checked")
-        ).map((input) => input.value);
-
-        applyFilterSearch(categoriesChecked, textSearch);
-    });
+    document.getElementById("image").setAttribute("src", event.image);
+    document.getElementById("title").innerText = event.name;
+    document.getElementById("description").innerText = event.description;
 });

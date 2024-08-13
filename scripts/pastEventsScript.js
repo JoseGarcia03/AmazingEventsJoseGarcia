@@ -273,7 +273,10 @@ const showEvents = (data) => {
 
             const anchor = document.createElement("a");
             anchor.classList.add("btn", "btn-primary");
-            anchor.setAttribute("href", "#");
+            anchor.setAttribute(
+                "href",
+                `../pages/details.html?id=${event._id}`
+            );
             anchor.innerHTML = "Details";
 
             divDetail.appendChild(price);
